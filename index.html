@@ -17,6 +17,11 @@
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+
+    .active{
+        background-color: red;
+        color: white;
+    }
   }
     </style>
 </head>
@@ -38,7 +43,7 @@
         <!-- button navbar -->
          <nav id="load-categories" class=" flex justify-center gap-4 py-8 ">
             <div>
-                <button onclick="videoContainer()" class="btn btn-sm bg-[#FF1F3D] text-white">All</button>
+                <button id="default-button" onclick="videoContainer()" class="btn btn-sm ">All</button>
             </div>
          </nav>
     </header>

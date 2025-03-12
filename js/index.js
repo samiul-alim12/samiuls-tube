@@ -10,14 +10,24 @@ function categories(){
 function displayCategories(receives){
     const getArray = receives.categories
     const loadCategories = document.getElementById("load-categories");
+    const getBtn = document.getElementById(`btn-${receives}`)
+
     for(let array of getArray){
         const newDiv = document.createElement("div");
         newDiv.innerHTML = `
-        <button onclick="showByCategory(${array.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${array.category}</button>
+        <button id="btn-${array.category_id}" onclick="showByCategory(${array.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${array.category}</button>
         `
         loadCategories.appendChild(newDiv)
+        
     }
 
+}
+// function for remove active class
+function removeActive(){
+    const removeClass = document.getElementsByClassName("active")
+    for(let remove of removeClass){
+        remove.classList.remove('active')
+    }
 }
 // video show by category
 const showByCategory = (id) =>{
@@ -27,8 +37,13 @@ const showByCategory = (id) =>{
     `
     fetch(url)
     .then(res => res.json())
-    .then(data => displayVideo(data.category))
-    
+    .then(data =>{
+        displayVideo(data.category)
+        removeActive()
+        const getBtn = document.getElementById(`btn-${id}`)
+        getBtn.classList.add("active")
+    })
+   
     
 }
 
@@ -37,6 +52,8 @@ function videoContainer(){
     fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
     .then(res =>res.json())
     .then(data =>{
+        removeActive()
+        document.getElementById("default-button").classList.add("active")
         displayVideo(data.videos)
     })
 }
