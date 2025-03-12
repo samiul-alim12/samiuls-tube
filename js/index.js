@@ -94,10 +94,43 @@ const displayVideo = (videos) =>{
                         <p class="text-sm text-gray-500">${element.others.views}</p>
                   </div>
                 </div>
+                <button onclick="showDetails('${element.video_id}')" class="btn btn-block">Show Details</button>
               </div>
         `
         videoContain.append(videoDiv)
     });
 }
+
+// function for show details
+function showDetails(id){
+    const url = `https://openapi.programming-hero.com/api/phero-tube/video/${id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        displayVideoDetails(data.video)
+    })
+}
+const displayVideoDetails = (receiveData) =>{
+    console.log(receiveData)
+        document.getElementById("my_modal").showModal()
+        const modalContainer = document.getElementById("modalContainer")
+        modalContainer.innerHTML =`
+            
+    <div class="card bg-base-100 image-full shadow-sm">
+     <figure>
+        <img
+        src="${receiveData.thumbnail}"
+        alt="Shoes" />
+    </figure>
+    <div class="card-body">
+        <h2 class="card-title">${receiveData.title}</h2>
+        <p>${receiveData.description}</p>
+    </div>
+    </div>
+        
+    
+    `
+}
+
 
 categories()
