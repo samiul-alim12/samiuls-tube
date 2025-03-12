@@ -90,7 +90,9 @@ const displayVideo = (videos) =>{
                   </div>
                   <div class=" space-y-2">
                         <h2 class=" text-base font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-                        <p class=" text-sm text-gray-500 flex gap-2">${element.authors[0].profile_name}<img class=" w-5 h-5" src="assets/icons8-verified-badge-48.png" alt=""></p>
+                        <p class=" text-sm text-gray-500 flex gap-2">${element.authors[0].profile_name}
+                        ${element.authors[0].verified == true ? `<img class=" w-5 h-5" src="assets/icons8-verified-badge-48.png" alt=""` : " "} 
+                        </p>
                         <p class="text-sm text-gray-500">${element.others.views}</p>
                   </div>
                 </div>
