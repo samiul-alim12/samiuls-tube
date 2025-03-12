@@ -44,6 +44,14 @@ function videoContainer(){
 const displayVideo = (videos) =>{
     const videoContain = document.getElementById("video-container")
     videoContain.innerHTML = "";
+    if(videos.length === 0){
+        `
+        <div class=" flex flex-col justify-center items-center mt-28 text-center">
+            <img src="assets/Icon.png" alt="">
+            <p class="pt-4 font-bold text-2xl">Oops!! Sorry, There is no <br> content here</p>
+        </div>
+        `
+    }
     videos.forEach(element => {
         const videoDiv = document.createElement("div")
         videoDiv.innerHTML = `         
