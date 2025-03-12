@@ -48,8 +48,8 @@ const showByCategory = (id) =>{
 }
 
 // video container section
-function videoContainer(){
-    fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+function videoContainer(searchText = ""){
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
     .then(res =>res.json())
     .then(data =>{
         removeActive()
@@ -125,12 +125,20 @@ const displayVideoDetails = (receiveData) =>{
     <div class="card-body">
         <h2 class="card-title">${receiveData.title}</h2>
         <p>${receiveData.description}</p>
+        <p>${receiveData.others.views}</p>
     </div>
     </div>
         
     
     `
 }
+
+// search section
+document.getElementById("search-input").addEventListener("keyup",(e)=>{
+   const input = e.target.value
+   videoContainer(input)
+    
+})
 
 
 categories()
